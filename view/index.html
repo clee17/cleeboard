@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%- title %></title>
+    <link rel="stylesheet" href="/css/layout.css">
+    <base href="/">
+    <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.12.0/js/md5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/angular@1.7.9/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/angular-cookies@1.5.9/angular-cookies.min.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.8.2/js/all.min.js"></script>
+
+    <script>
+        var app = angular.module('root',['ngCookies'])
+            .config(function($locationProvider) {
+            $locationProvider.html5Mode(true);
+        });
+    </script>
+    <script src="/view/module/directive.js"></script>
+    <script src="/view/service/feedService.js"></script>
+    <script>
+        var APPINFO = "<%= encodeURIComponent(JSON.stringify(info)) %>";
+        APPINFO  =  JSON.parse(decodeURIComponent(APPINFO));
+    </script>
+    <script src="/view/control/root.js"></script>
+    <script src="/view/control/left.js"></script>
+    <script src="/view/control/main.js"></script>
+</head>
+<body ng-app="root" ng-controller="rootCon">
+<div id="leftPanel" ng-controller="leftCon">
+    <header text="C" pindex="0"></header>
+    <div class="dash"></div>
+    <header-button icon="plus"></header-button>
+</div>
+<div id="main">
+<div id="main_left">
+    <div id="left_header"></div>
+    <div id="left_contents"></div>
+</div>
+<div id="main_main" ng-controller="mainCon">
+<div id="main_header" style="display:flex;flex-direction:row;">
+    <div id="main_header_contents"></div>
+    <div style="height:80%;background:lightgray;opacity:0.8;width:1px;margin-left:auto;margin-right:0.5rem;margin-top:auto;margin-bottom:auto;"></div>
+    <button><i class="fa fa-user-circle fa-2x"></i></button>
+    <button><i class="fa fa-question-circle fa-2x"></i></button>
+</div>
+</div>
+</div>
+<div id="rightPanel"></div>
+</body>
+</html>
